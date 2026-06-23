@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Göksu İçin 💗</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{
+background:#ffd6e7;
+color:#333;
+overflow-x:hidden;
+transition:.4s;
+}
+
+.dark{
+background:#111;
+color:white;
+}
+
+.heart{
+position:fixed;
+color:#ff69b4;
+animation:float 12s linear infinite;
+pointer-events:none;
+z-index:-1;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-100px)}
+}
+
+#passwordScreen,#intro{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+#passwordScreen{
+background:#ffd6e7;
+}
+
+input{
+padding:12px;
+border:none;
+border-radius:12px;
+margin:10px;
+}
+
+button{
+background:#ff8fbc;
+border:none;
+padding:12px 20px;
+border-radius:15px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.card{
+background:white;
+margin:15px;
+padding:20px;
+border-radius:20px;
+box-shadow:0 0 15px rgba(0,0,0,.08);
+cursor:pointer;
+}
+
+.dark .card{
+background:#222;
+}
+
+.hidden{
+display:none;
+}
+
+section{
+padding:25px;
+}
+
+.gallery{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.gallery img{
+width:280px;
+max-width:90%;
+border-radius:20px;
+}
+
+#emergencyModal{
+position:fixed;
+inset:0;
+background:#ffc0d8;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:30px;
+text-align:center;
+z-index:999;
+}
+
+.counter{
+font-size:20px;
+margin-top:10px;
+}
+
+iframe{
+width:100%;
+height:380px;
+border:none;
+border-radius:20px;
+}
+
+.nightBtn{
+position:fixed;
+top:15px;
+right:15px;
+z-index:999;
+}
+</style>
+</head>
+
+<body>
+
+<button class="nightBtn" onclick="toggleDark()">🌙</button>
+
+<div id="passwordScreen">
+<h1>🔒 Göksu İçin</h1>
+<p>İpucu: Tanışma günümüz, ayımız ve yılımızın son iki sayısı. Baştaki 0'ı unutma bebeğim 💗</p>
+<input id="pass" type="password">
+<button onclick="checkPass()">Giriş</button>
+</div>
+
+<div id="intro" class="hidden">
+<h1 id="typing"></h1>
+</div>
+
+<div id="main" class="hidden">
+
+<section style="text-align:center">
+<h1>Merhaba Aşkım. Eğer şu an buradaysan, yalnız değilsin. 💗</h1>
+<p>Kendini nasıl hissedersen hisset, burada sana iyi gelebilecek küçük şeyler bulacaksın.</p>
+
+<div class="counter" id="counter"></div>
+</section>
+
+<section>
+
+<h2>💭 Nasıl Hissediyorsun?</h2>
+
+<div class="card" onclick="openSection('kafam')">
+🌧️ Kafam Çok Dolu
+</div>
+
+<div class="card" onclick="openSection('kotu')">
+💔 Kendimi Kötü Hissediyorum
+</div>
+
+<div class="card" onclick="openSection('ozledim')">
+🥺 Seni Özledim
+</div>
+
+<div class="card" onclick="openSection('gul')">
+😂 Biraz Gülmek İstiyorum
+</div>
+
+<div class="card" onclick="openSection('bakmak')">
+📸 Sadece Sana Bakmak İstiyorum
+</div>
+
+<div class="card" onclick="openSection('yetersiz')">
+😔 Kendimi Yetersiz Hissediyorum
+</div>
+
+</section>
+
+<section id="kafam">
+<h2>🌧️ Kafam Çok Dolu</h2>
+
+<h3>Nefes Egzersizi</h3>
+<p>
+4 saniye nefes al<br>
+4 saniye tut<br>
+6 saniye ver<br>
+5 kez tekrar et 💗
+</p>
+
+<h3>Dikkat Dağıtıcı Aktiviteler</h3>
+<ul>
+<li>5 tane pembe eşya bul</li>
+<li>En sevdiğin 3 anıyı düşün</li>
+<li>10 hayvan ismi say</li>
+<li>Bugün gördüğün 5 şeyi yaz</li>
+</ul>
+
+<h3>Rahatlatıcı Notlar</h3>
+
+<div class="card">Düşünmek yerine rahatla hep seninleyim 💗</div>
+<div class="card">Ağlamakta bir problem yok 💗</div>
+<div class="card">Seni çok seviyorum 💗</div>
+
+</section>
+
+<section id="kotu">
+<h2>💔 Kendimi Kötü Hissediyorum</h2>
+
+<h3>Merhaba güzelliğim,
+
+Bu mektubu okurken nasıl hissediyorsun bilmiyorum. Belki yorgunsun, belki kırgınsın, belki de son zamanlarda yaşadığın her şey biraz fazla yük olmuş gibi geliyor. Ama şu an bilmeni istediğim ilk şey şu yalnız değilsin.
+Bazen insanın içi sebepsiz yere daralır. Her şey üst üste gelmiş gibi olur.  Eğer sen de böyle hissediyorsan, bunun için kendine kızma. Herkesin yorulmaya, üzülmeye, nefes almaya ihtiyacı vardır.
+Belki son zamanlarda kendini yeterli hissetmiyorsun. Belki yaptığın şeylerin hiçbir anlamı yokmuş gibi geliyor. Belki aynaya baktığında eksiklerini görüyor, başarılarından çok hatalarını hatırlıyorsun. Ama inan bana, sen kendine karşı düşündüğünden çok daha değerlisin.
+Şu an içinde bulunduğun karanlık, sonsuza kadar sürmeyecek. Biliyorum, bazen bunu duymak bile işe yaramıyormuş gibi geliyor. Çünkü kötü hissettiğimiz anlarda geleceği göremeyiz. Ama hayatında daha önce de zor günler oldu ve sen onların içinden geçmeyi başardın. Belki yara aldın, belki yoruldun ama yine de devam ettin. Bu bile ne kadar güçlü olduğunu gösteriyor.
+Kendine biraz daha nazik davranmanı istiyorum. Sürekli kendini eleştirmek yerine bir an dur ve şunu düşün: Eğer çok sevdiğin biri senin yaşadıklarını yaşasaydı ona ne söylerdin? Muhtemelen onu suçlamaz, ona sarılır, dinler ve destek olurdun. İşte aynı şefkati sen de hak ediyorsun.
+Her gün mükemmel olmak zorunda değilsin.
+Her gün güçlü olmak zorunda değilsin.
+Her gün gülümsemek zorunda değilsin.
+Bazen sadece hayatta kalmaya çalışmak bile büyük bir başarıdır.
+Şu an ne hissediyorsan hissetmene izin ver. Üzüntünü bastırmak zorunda değilsin. Ağlamak istiyorsan ağla. Dinlenmek istiyorsan dinlen. Bir süre hiçbir şey yapmadan oturmak istiyorsan otur. Kendine iyileşmek için zaman tanı.
+Ve lütfen unutma:
+Sen sadece başarılarından ibaret değilsin.
+Sen sadece hatalarından ibaret değilsin.
+Sen sadece insanların senin hakkında düşündüklerinden ibaret değilsin.
+Swn hayalleri olan, mücadele eden, seven, sevilen ve varlığıyla dünyada iz bırakan bir insansın.
+Belki şu an bunu hissedemiyorsun ama birilerinin hayatında düşündüğünden çok daha önemli bir yere sahipsin. Bazen sadece varlığın bile bir başkasına güç verebilir.
+Bugün kendinden büyük şeyler bekleme. Sadece bir nefes al. Sonra bir tane daha. Bir bardak su iç. Bir pencere aç. Sevdiğin bir şarkıyı dinle. Küçük adımlar at. Çünkü iyileşmek çoğu zaman büyük sıçramalarla değil, küçücük adımlarla gerçekleşir.
+Eğer yorulduysan biraz dinlen.
+Eğer düştüysen biraz otur.
+Ama lütfen kendinden vazgeçme.
+Belki bugün değil, belki yarın da değil ama bir gün dönüp bu günlere baktığında, geçirdiğin tüm zorluklara rağmen devam etmiş olmanın ne kadar büyük bir cesaret olduğunu göreceksin.
+O güne kadar şunu hatırla:
+Sen değerlisin.
+Sen önemlisin.
+Sen sevilmeyi hak ediyorsun.</h3>
+
+<h3>Dinlemek sana iyi gelebilir aşkımm 🎵</h3>
+
+<iframe src="https://open.spotify.com/embed/playlist/1psNkC5bpFzZNoMNdVzFx9"></iframe>
+
+</section>
+
+<section id="ozledim">
+<h2>🥺 Seni Özledim</h2>
+
+<div class="gallery">
+<img src="https://i.pinimg.com/736x/1f/fa/12/1ffa12a49a02503ee83e409c9b5bcb18.jpg">
+</div>
+
+<p style="text-align:center">
+Ben de seni çok özledim sevgilimmm 💗
+</p>
+</section>
+
+<section id="gul">
+<h2>😂 Biraz Gülmek İstiyorum</h2>
+
+<iframe src="https://www.youtube.com/embed/H-fWGjmFrC4"></iframe>
+
+<div class="gallery">
+<img src="https://i.pinimg.com/736x/88/af/f3/88aff3e8b1b7548f2884fe8ac841fccf.jpg">
+</div>
+
+<p>Bol bol gül bebeğim 💗</p>
+</section>
+
+<section id="bakmak">
+<h2>📸 Sadece Sana Bakmak İstiyorum</h2>
+
+<div class="gallery">
+<img src="https://i.pinimg.com/736x/b2/d2/7d/b2d27df95adaae949e0de00b0addad38.jpg">
+</div>
+
+<p>Bak bana aşkıımmm 💗</p>
+</section>
+
+<section id="yetersiz">
+<h2>😔 Seni Seviyorum Çünkü...</h2>
+
+<h3> Seni seviyorum çünkü hayallerime ve hedeflerime benden daha çok inanıyorsun.
+
+Seni seviyorum çünkü senin yanındayken hiç rol yapmama gerek kalmıyor, en doğal halimle takılabiliyorum.
+
+Seni seviyorum çünkü uykulu uykulu konuşurkenki o ses tonun dünyanın en tatlı şeyi.
+
+Seni seviyorum çünkü bazen çok inatçı olsan da günün sonunda hep orta yolu buluyoruz.
+
+Seni seviyorum çünkü birlikteyken zaman o kadar hızlı geçiyor ki, anlamıyorum bile.
+
+Seni seviyorum çünkü bana taktığın o komik lakapları bile içten içe çok seviyorum.
+
+Seni seviyorum çünkü sarıldığında bütün yorgunluğum uçup gidiyor.
+
+Seni seviyorum çünkü derslerden veya bir şeylerden bunaldığımda kafamı dağıtmayı çok iyi biliyorsun.
+
+Seni seviyorum çünkü beni sadece iyi günümde değil, en çekilmez anlarımda da çekiyorsun.
+
+Seni seviyorum çünkü zevklerimiz farklı olsa bile benim sevdiğim şeylere saygı duyuyorsun.
+
+Seni seviyorum çünkü sen yanımdayken hiçbir şeyden korkmuyorum.
+
+Seni seviyorum çünkü gözlerimin içine bakarak ismimi söylemen bile kalbimi hızlandırıyor.
+
+Seni seviyorum çünkü bir konuda haklıysam bana hak vermekten hiç çekinmiyorsun.
+
+Seni seviyorum çünkü beraber yürüdüğümüz yollar ne kadar uzun olursa olsun hiç bitmesin istiyorum.
+
+Seni seviyorum çünkü bazen ben bile kendime katlanamazken sen beni koşulsuz seviyorsun.
+
+Seni seviyorum çünkü sana sürpriz yapıp o mutlu yüzünü görmek en büyük hobim oldu.
+
+Seni seviyorum çünkü bana her şeyin düzeleceğini söylediğinde buna gerçekten inanıyorum.
+
+Seni seviyorum çünkü bazen sırf ben mutlu olayım diye kendi canının istemediği şeyleri bile yapıyorsun. <h3>
+</section>
+
+<section style="padding:40px">
+
+<button onclick="openEmergency()"
+style="width:100%;font-size:20px">
+🆘 Şu an gerçekten çok kötü hissediyorum
+</button>
+
+</section>
+
+</div>
+
+<div id="emergencyModal">
+
+<h1 id="emergencyText"></h1>
+
+<button onclick="newEmergency()">
+Bir tane daha göster 💗
+</button>
+
+<br>
+
+<button onclick="closeEmergency()">
+Kapat
+</button>
+
+</div>
+
+<script>
+
+for(let i=0;i<40;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💗";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(8+Math.random()*10)+"s";
+document.body.appendChild(h);
+}
+
+function checkPass(){
+if(document.getElementById("pass").value==="040825"){
+document.getElementById("passwordScreen").classList.add("hidden");
+document.getElementById("intro").classList.remove("hidden");
+typeIntro();
+}
+else{
+alert("Yanlış şifre bebeğim 💗");
+}
+}
+
+let text="SENİN İÇİN BEBEĞİMM GÜVENLİ ALAANN 💗";
+let i=0;
+
+function typeIntro(){
+let interval=setInterval(()=>{
+document.getElementById("typing").innerHTML+=text[i];
+i++;
+if(i>=text.length){
+clearInterval(interval);
+
+setTimeout(()=>{
+document.getElementById("intro").classList.add("hidden");
+document.getElementById("main").classList.remove("hidden");
+},2500);
+
+}
+},80);
+}
+
+function openSection(id){
+document.getElementById(id).scrollIntoView({
+behavior:"smooth"
+});
+}
+
+function toggleDark(){
+document.body.classList.toggle("dark");
+}
+
+const startDate=new Date("2025-08-04");
+
+function updateCounter(){
+const now=new Date();
+const diff=now-startDate;
+
+const days=Math.floor(diff/(1000*60*60*24));
+
+document.getElementById("counter").innerHTML=
+"💗 Tanışalı "+days+" gün oldu";
+}
+
+setInterval(updateCounter,1000);
+updateCounter();
+
+const messages=[
+"Ceren seni çok seviyor 💗",
+"Şu an hissettiğin şey sonsuza kadar sürmeyecek.",
+"Bir bardak su iç ve tekrar oku: Sen değerlisin.",
+"Bugün sadece nefes almak bile yeterli.",
+"Yalnız değilsin bebeğim 💗",
+"Ben seninle gurur duyuyorum."
+];
+
+function openEmergency(){
+document.getElementById("emergencyModal").style.display="flex";
+newEmergency();
+}
+
+function newEmergency(){
+document.getElementById("emergencyText").innerHTML=
+messages[Math.floor(Math.random()*messages.length)];
+}
+
+function closeEmergency(){
+document.getElementById("emergencyModal").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
